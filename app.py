@@ -1,4 +1,5 @@
 from flask import Flask
+from model.DB import DB
 
 app = Flask(__name__)
 
