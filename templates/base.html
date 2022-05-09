@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>Okul Otomasyonu - {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+
+<body>
+    <header class="py-3 border-bottom">
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-xl-auto">
+                    <a href="{{ url_for('home') }}">
+                        <div class="logo"></div>
+                    </a>
+                </div>
+                <div class="col-xl-auto">
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary rounded-pill" type="button" id="dropdownMenuButton1"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-caret-down"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    {% block headerdropdown %}
+                                    
+                                    {% endblock %}
+                                    <li><a class="dropdown-item" href="#">Çıkış Yap</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            {% block personalinfo %}
+                            
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <nav class="shadow-sm mb-5">
+        {% block menu_eleman %}
+        
+        {% endblock %}
+    </nav>
+
+    <div class="container mb-5">
+        <div class="content">
+            {% block content %}
+            
+
+            {% endblock %}
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/bootstrap/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery/jquery-3.6.0.min.js') }}"></script>
+    <script src="https://cdn.anychart.com/js/latest/anychart-bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block script %}
+    
+    {% endblock %}
+</body>
+
+</html>

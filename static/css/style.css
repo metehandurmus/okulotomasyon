@@ -1,0 +1,141 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, img, ins, kbd, q, s, samp,
+small, strike, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, input, select, textarea, button,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+a {
+    text-decoration: none;
+}
+img {
+    border: 0;
+}
+:focus {
+    outline: 0;
+}
+.clear {
+    clear: both;
+}
+
+/* reset */
+
+
+body {
+    background-color: #fff;
+}
+
+header {
+    background-color: #fff;
+}
+
+.logo {
+    background-image: url('/static/img/logo.svg');
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: contain;
+    display: block;
+    width: 306px;
+    height: 76px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav a {
+    padding: 0.75rem 1.5rem;
+    transition: all 250ms;
+    color: rgb(0 0 0 / 75%);
+    font-weight: 500;
+}
+
+nav a:hover {
+    background-color: rgb(0 0 0 / 2%);
+}
+
+.content {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgb(0 0 0 / 10%);
+    padding: 1.5rem;
+}
+
+.box {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 4px;
+    background-color: gray;
+    color: white;
+    user-select: none;
+    position: relative;
+}
+
+.box:after {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 65px;
+    position: absolute;
+    right: 1rem;
+    top: 0;
+    opacity: 0.7;
+    transition: all 250ms;
+}
+
+.box:hover:after {
+    right: 2rem;
+}
+
+.alinan-ders:after {
+    content: "\f02d";
+}
+
+.sinav-sayisi:after {
+    content: "\f5ae";
+}
+
+.aciklanan-sinav:after {
+    content: "\f279";
+}
+
+.devamsizlik-sayisi:after {
+    content: "\e542";
+}
+
+.h-600 {
+    height: 600px;
+}
+
+.graph {
+    height: 300px;
+}
