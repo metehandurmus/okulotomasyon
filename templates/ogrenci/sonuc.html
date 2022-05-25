@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Öğrenci Sonuç Sayfası{% endblock %}
+
+{% block headerdropdown %}
+    {% include "ogrenci/includes/dropdown.html" %}
+{% endblock %}
+
+{% block personalinfo %}
+    {% include "ogrenci/includes/bilgiler.html" %}
+{% endblock %}
+
+{% block menu_eleman %}
+    {% include "ogrenci/includes/menu.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="small text-secondary mb-5">
+    <a href="{{ url_for('home') }}">Anasayfa</a> » Sonuçlar
+</div>
+
+<div>
+    <div class="border-bottom fs-4 pb-2 mb-2 fw-bold">Sınav Sonuçları</div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Ders Adı</th>
+                <th scope="col">Sınav Adı</th>
+                <th scope="col">Sınav Tarihi</th>
+                <th scope="col">Sınav Sonucu</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in sonuclar %}
+            <tr>
+                <td>{{ i[0] }}</td>
+                <td>{{ i[1] }}</td>
+                <td>{{ i[2] }}</td>
+                <td>
+                    {% if i[3] >= 50 %}
+                        <span class="text-success">{{ i[3] }}</span>
+                    {% else %}
+                        <span class="text-danger">{{ i[3] }}</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

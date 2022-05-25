@@ -1,0 +1,22 @@
+<div class="d-none d-lg-flex">
+    <a href="{{ url_for('home') }}"><i class="fa-solid fa-earth-africa"></i> Anasayfa</a>
+    <a href="{{ url_for('dersler') }}"><i class="fa-solid fa-book"></i> Derslerim</a>
+    <a href="{{ url_for('sinavlar') }}"><i class="fa-solid fa-pen-ruler"></i> Sınavlar</a>
+    <a href="{{ url_for('sonuclar') }}"><i class="fa-solid fa-map"></i> Sınav Sonuçları</a>
+    <a href="{{ url_for('yoklama') }}"><i class="fa-solid fa-person-circle-question"></i> Yoklama Durumu</a>
+</div>
+<div class="d-block d-lg-none w-100">
+    <div class="dropdown w-100">
+        <div class="btn btn-outline-primary dropdown-toggle d-block m-4" type="button" id="dropdownMenuButton1"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Menü
+        </div>
+        <ul class="dropdown-menu w-100 dropdown-menu-start" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="{{ url_for('home') }}"><i class="fa-solid fa-earth-africa"></i> Anasayfa</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('dersler') }}"><i class="fa-solid fa-book"></i> Derslerim</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('sinavlar') }}"><i class="fa-solid fa-pen-ruler"></i> Sınavlar</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('sonuclar') }}"><i class="fa-solid fa-map"></i> Sınav Sonuçları</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('yoklama') }}"><i class="fa-solid fa-person-circle-question"></i> Yoklama Durumu</a></li>
+        </ul>
+    </div>
+</div>

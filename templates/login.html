@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>Okul Otomasyonu - {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row justify-content-center my-5">
+            <div class="col-auto">
+                <div class="border p-5 rounded-3">
+                    <div class="mb-5"><div class="logo"></div></div>
+                    <form action="{{ url_for('login') }}" method="post">
+                        <div class="mb-3">
+                            <select name="perm" id="perm" class="form-control">
+                                <option value="1" selected>Öğrenci</option>
+                                <option value="2">Öğretmen</option>
+                                <option value="3">Müdür</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" name="okulno" id="okulno" class="form-control" placeholder="Okul No/TC No">
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" name="sifre" id="sifre" class="form-control" placeholder="Şifre">
+                        </div>
+                        <input type="submit" value="Giriş Yap" class="btn btn-primary w-100">
+                    </form>
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            <div class="mt-4 text-danger">
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% endwith %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/bootstrap/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery/jquery-3.6.0.min.js') }}"></script>
+    <script src="https://cdn.anychart.com/js/latest/anychart-bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script> 
+</body>
+
+</html>

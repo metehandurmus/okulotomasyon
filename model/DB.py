@@ -5,7 +5,7 @@ class DB:
     cur  = ""
     
     def __init__(self):
-        self.conn = sqlite3.connect(os.path.join('db/OkulOtomasyon.db'))
+        self.conn = sqlite3.connect(os.path.join('db', 'okulOtomasyon.db'))
         self.cur  = self.conn.cursor()
     
     def close(self):

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Öğrenci Dersler Sayfası{% endblock %}
+
+{% block headerdropdown %}
+    {% include "ogrenci/includes/dropdown.html" %}
+{% endblock %}
+
+{% block personalinfo %}
+    {% include "ogrenci/includes/bilgiler.html" %}
+{% endblock %}
+
+{% block menu_eleman %}
+    {% include "ogrenci/includes/menu.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="small text-secondary mb-5">
+    <a href="{{ url_for('home') }}">Anasayfa</a> » Dersler
+</div>
+
+<div class="border-bottom fs-4 pb-2 mb-2 fw-bold">Dersler</div>
+<div class="accordion accordion-flush" id="accordionFlushExample">
+    {% for ders in dersler %}
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingOne{{ders[4]}}">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne{{ders[4]}}" aria-expanded="false" aria-controls="flush-collapseOne{{ders[4]}}">
+                <strong> {{ ders[0] }} </strong>
+            </button>
+        </h2>
+        <div id="flush-collapseOne{{ders[4]}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne{{ders[4]}}" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+                {{ ders[1] }}
+                <div class="mt-3 small text-secondary"><strong>Dersi veren: </strong> {{ ders[2] }} {{ ders[3] }}</div>
+            </div>
+        </div>
+    </div>
+    {% endfor %} 
+</div>
+
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

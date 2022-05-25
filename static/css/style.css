@@ -64,7 +64,9 @@ header {
     background-size: contain;
     display: block;
     width: 306px;
+    max-width: 100%;
     height: 76px;
+    margin:0 auto;
 }
 
 nav {
@@ -138,4 +140,10 @@ nav a:hover {
 
 .graph {
     height: 300px;
+}
+
+@media only screen and (max-width: 800px) {
+    .h-600 {
+        height: 300px;
+    }
 }
