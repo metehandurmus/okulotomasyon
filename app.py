@@ -5,6 +5,7 @@ from controller.SinavManager import SinavManager
 from controller.StudentManager import StudentManager
 from controller.SonucManager import SonucManager
 from controller.YoklamaManager import YoklamaManager
+from controller.OgretmenManager import OgretmenManager
 
 app = Flask(__name__)
 app.secret_key = b'okulotomasyonsecretkey'
@@ -14,6 +15,7 @@ sonucM = SonucManager()
 dersM = DersManager()
 sinavM = SinavManager()
 yoklamaM = YoklamaManager()
+ogretmenM = OgretmenManager()
 
 @app.route('/')
 def home():
@@ -23,10 +25,13 @@ def home():
         student = studentM.getStudent(session['id'])
         sayilar = studentM.sayilariGetir(session['id'])
         data = sonucM.tumSonuclar(session['id'])
+        print(data)
         liste = sonucM.secilenleriGetir(session['id'])
         return render_template('ogrenci/anasayfa.html', student=student, sayilar = sayilar, data = data, liste=liste)
     elif session['perm'] == 2:
-        pass
+        ogretmen = ogretmenM.getOgretmen(session['id'])
+        dersler = ogretmenM.getOgretmenDersler(session['id'])
+        return render_template('ogretmen/anasayfa.html', ogretmen=ogretmen, dersler=dersler)
     elif session['perm'] == 3:
         pass
 
@@ -76,7 +81,7 @@ def yoklama():
         return redirect(url_for('home'))
 
 @app.route('/ogrenci/ozlukbilgileri')
-def ozlukBilgileri():
+def ogrenciOzlukBilgileri():
     if not session.get("perm"):
         return redirect(url_for('login'))
     if session['perm'] == 1:
@@ -86,7 +91,7 @@ def ozlukBilgileri():
         return redirect(url_for('home'))
 
 @app.route('/ogrenci/sifredegistir', methods=['GET', 'POST'])
-def sifreDegistir():
+def ogrenciSifreDegistir():
     if not session.get("perm"):
         return redirect(url_for('login'))
     if session['perm'] == 1:
@@ -108,6 +113,33 @@ def sifreDegistir():
         return render_template('ogrenci/sifredegistir.html',  student=student)
     else:
         return redirect(url_for('home'))
+
+@app.route('/ogretmen/sinav/ekle', methods=['GET', 'POST'])
+def ogretmenSinavEkle():
+    if not session.get("perm"):
+        return redirect(url_for('login'))
+    if session['perm'] == 2:
+        ogretmen = ogretmenM.getOgretmen(session['id'])
+        dersler = ogretmenM.getOgretmenDersler(session['id'])
+        if request.method == 'POST':
+            ad = request.form.get('sinavadi')
+            tarih = request.form.get('sinavtarihi')
+            if ad.replace(" ", "") == "" or not tarih:
+                flash("Boş alan bırakmayın.")
+                return render_template('ogretmen/sinavekle.html', ogretmen=ogretmen, dersler=dersler)
+            else:
+                sinav = 1
+                if sinavM.sinavEkle(sinav):
+                    flash("Başarıyla eklendi.")
+                else:
+                    flash("Bir sorunla karşılaşıldı.")
+        return render_template('ogretmen/sinavekle.html', ogretmen=ogretmen, dersler=dersler)
+    else:
+        return redirect(url_for('home'))
+
+@app.route('/ogretmen/sinav/<int:id>/gor')
+def ogretmenSinavGor(id):
+    return "1"
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -133,4 +165,4 @@ def logout():
     return redirect(url_for('home'))
 
 if __name__ == '__main__':
-    app.run(debug=True, port=80)
+    app.run(debug=True, port=80, host="0.0.0.0")

@@ -19,7 +19,7 @@ class LoginManager():
                 return True
             else:
                 return False
-        elif type == 2 or type == 3:
+        elif type == 2:
             sql = '''
                 SELECT * FROM ogretmen WHERE tcno = (?) AND sifre = (?)
             '''
@@ -27,6 +27,7 @@ class LoginManager():
             db.cur.execute(sql, data)
             data = db.cur.fetchone()
             if data:
+                self.id = data[0]
                 return True
             else:
                 return False

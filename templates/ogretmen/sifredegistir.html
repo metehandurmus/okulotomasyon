@@ -29,7 +29,7 @@
     {% endfor %}
     {% endif %}
     {% endwith %}
-    <form action="{{ url_for('ogrenciSifreDegistir') }}" method="POST">
+    <form action="{{ url_for('sifreDegistir') }}" method="POST">
         <div class="mb-3">
             <label for="oldp" class="form-label">Eski şifreniz</label>
             <input type="password" name="oldp" id="oldp" class="form-control" required>

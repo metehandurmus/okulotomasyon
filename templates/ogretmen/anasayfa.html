@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Öğrenci Anasayfası{% endblock %}
+
+{% block headerdropdown %}
+    {% include "ogretmen/includes/dropdown.html" %}
+{% endblock %}
+
+{% block personalinfo %}
+    {% include "ogretmen/includes/bilgiler.html" %}
+{% endblock %}
+
+{% block menu_eleman %}
+    {% include "ogretmen/includes/menu.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="border-bottom fs-4 pb-2 mb-2 fw-bold">Verilen dersler</div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Ders Adı</th>
+            <th scope="col">Sınıf</th>
+            <th scope="col" colspan="2">Sınav İşlemleri</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in dersler %}
+        <tr>
+            <td>{{ i[0] }}</td>
+            <td>{{ i[1] }}. sınıf</td>
+            <td>
+                <a href="{{ url_for('ogretmenSinavEkle') }}" class="btn btn-outline-primary btn-sm">Sınav Ekle</a>
+                <a href="{{ url_for('ogretmenSinavGor', id=i[2]) }}" class="btn btn-outline-primary btn-sm">Sınavları Gör</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

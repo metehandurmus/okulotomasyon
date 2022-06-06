@@ -18,3 +18,6 @@ class SinavManager:
         db.cur.execute(sql, data)
         data = db.cur.fetchall()
         return data
+    
+    def sinavEkle(self, sinav):
+        return False
