@@ -109,7 +109,7 @@ def ogrenciSifreDegistir():
                     flash("<div class='my-4 text-danger'>Yeni şifreleriniz uyuşmuyor.</div>")
             else:
                 flash("<div class='my-4 text-danger'>Eski şifreniz yanlış.</div>")
-            return(redirect(url_for('sifreDegistir')))
+            return(redirect(url_for('ogrenciSifreDegistir')))
         return render_template('ogrenci/sifredegistir.html',  student=student)
     else:
         return redirect(url_for('home'))
@@ -126,7 +126,6 @@ def ogretmenSinavEkle():
             tarih = request.form.get('sinavtarihi')
             if ad.replace(" ", "") == "" or not tarih:
                 flash("Boş alan bırakmayın.")
-                return render_template('ogretmen/sinavekle.html', ogretmen=ogretmen, dersler=dersler)
             else:
                 sinav = 1
                 if sinavM.sinavEkle(sinav):
@@ -139,7 +138,46 @@ def ogretmenSinavEkle():
 
 @app.route('/ogretmen/sinav/<int:id>/gor')
 def ogretmenSinavGor(id):
-    return "1"
+    if not session.get("perm"):
+        return redirect(url_for('login'))
+    if session['perm'] == 2:
+        return "1"
+    else:
+        return redirect(url_for('home'))
+
+@app.route('/ogretmen/ozlukbilgileri')
+def ogretmenOzlukBilgileri():
+    if not session.get("perm"):
+        return redirect(url_for('login'))
+    if session['perm'] == 2:
+        ogretmen = ogretmenM.getOgretmen(session['id'])
+        return render_template('ogretmen/ozluk.html',  ogretmen=ogretmen)
+    else:
+        return redirect(url_for('home'))
+
+@app.route('/ogretmen/sifredegistir', methods=['GET', 'POST'])
+def ogretmenSifreDegistir():
+    if not session.get("perm"):
+        return redirect(url_for('login'))
+    if session['perm'] == 2:
+        ogretmen = ogretmenM.getOgretmen(session['id'])
+        if request.method == 'POST':
+            oldp = request.form.get('oldp')
+            newp = request.form.get('newp')
+            newp2 = request.form.get('newp2')
+            if oldp == ogretmen.sifre:
+                if newp == newp2 and newp != "":
+                    ogretmen.sifre = newp
+                    ogretmenM.updateOgretmen(ogretmen)
+                    flash("<div class='my-4 text-success'>Şifreniz başarı ile değiştirildi.</div>")
+                else:
+                    flash("<div class='my-4 text-danger'>Yeni şifreleriniz uyuşmuyor.</div>")
+            else:
+                flash("<div class='my-4 text-danger'>Eski şifreniz yanlış.</div>")
+            return(redirect(url_for('ogretmenSifreDegistir')))
+        return render_template('ogretmen/sifredegistir.html',  ogretmen=ogretmen)
+    else:
+        return redirect(url_for('home'))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -165,4 +203,4 @@ def logout():
     return redirect(url_for('home'))
 
 if __name__ == '__main__':
-    app.run(debug=True, port=80, host="0.0.0.0")
+    app.run(debug=True, port=80)

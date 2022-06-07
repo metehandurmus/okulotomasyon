@@ -33,3 +33,13 @@ class OgretmenManager:
             return data
         else:
             return False
+
+    def updateOgretmen(self, ogretmen):
+        db = DB()
+        sql = '''
+        UPDATE ogretmen SET tcno = ?, sifre = ?, ad = ?, soyad = ?
+        '''
+        data = (ogretmen.tcno, ogretmen.sifre, ogretmen.ad, ogretmen.soyad)
+        db.cur.execute(sql, data)
+        db.conn.commit()
+        db.close()

@@ -3,15 +3,15 @@
 {% block title %}Şifre Değiştirme Sayfası{% endblock %}
 
 {% block headerdropdown %}
-{% include "ogrenci/includes/dropdown.html" %}
+{% include "ogretmen/includes/dropdown.html" %}
 {% endblock %}
 
 {% block personalinfo %}
-{% include "ogrenci/includes/bilgiler.html" %}
+{% include "ogretmen/includes/bilgiler.html" %}
 {% endblock %}
 
 {% block menu_eleman %}
-{% include "ogrenci/includes/menu.html" %}
+{% include "ogretmen/includes/menu.html" %}
 {% endblock %}
 
 {% block content %}
@@ -29,7 +29,7 @@
     {% endfor %}
     {% endif %}
     {% endwith %}
-    <form action="{{ url_for('sifreDegistir') }}" method="POST">
+    <form action="{{ url_for('ogretmenSifreDegistir') }}" method="POST">
         <div class="mb-3">
             <label for="oldp" class="form-label">Eski şifreniz</label>
             <input type="password" name="oldp" id="oldp" class="form-control" required>
