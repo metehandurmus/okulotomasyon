@@ -1,11 +1,11 @@
 from flask import Flask, redirect, render_template, session, url_for, request, flash
-from controller.DersManager import DersManager
-from controller.LoginManager import LoginManager
-from controller.SinavManager import SinavManager
-from controller.StudentManager import StudentManager
-from controller.SonucManager import SonucManager
-from controller.YoklamaManager import YoklamaManager
-from controller.OgretmenManager import OgretmenManager
+from dbmanager.DersManager import DersManager
+from dbmanager.LoginManager import LoginManager
+from dbmanager.SinavManager import SinavManager
+from dbmanager.StudentManager import StudentManager
+from dbmanager.SonucManager import SonucManager
+from dbmanager.YoklamaManager import YoklamaManager
+from dbmanager.OgretmenManager import OgretmenManager
 
 app = Flask(__name__)
 app.secret_key = b'okulotomasyonsecretkey'
