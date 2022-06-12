@@ -25,7 +25,6 @@ def home():
         student = studentM.getStudent(session['id'])
         sayilar = studentM.sayilariGetir(session['id'])
         data = sonucM.tumSonuclar(session['id'])
-        print(data)
         liste = sonucM.secilenleriGetir(session['id'])
         return render_template('ogrenci/anasayfa.html', student=student, sayilar = sayilar, data = data, liste=liste)
     elif session['perm'] == 2:
@@ -124,10 +123,11 @@ def ogretmenSinavEkle():
         if request.method == 'POST':
             ad = request.form.get('sinavadi')
             tarih = request.form.get('sinavtarihi')
+            ders_id = request.form.get('dersid')
             if ad.replace(" ", "") == "" or not tarih:
                 flash("Boş alan bırakmayın.")
             else:
-                sinav = 1
+                sinav = sinavM.sinavOlustur(ad, tarih, ders_id)
                 if sinavM.sinavEkle(sinav):
                     flash("Başarıyla eklendi.")
                 else:

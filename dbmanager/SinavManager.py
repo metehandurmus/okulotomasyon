@@ -1,9 +1,10 @@
 from model.DB import DB
+from model.Sinav import Sinav
 
 class SinavManager:
     def __init__(self):
         pass
-
+    
     def aciklananSinavlar(self, ogr_id):
         db = DB()
         sql = '''
@@ -20,4 +21,15 @@ class SinavManager:
         return data
     
     def sinavEkle(self, sinav):
-        return False
+        db = DB()
+        sql = '''
+            INSERT INTO sinav (ad, tarih, ders_id) VALUES (?, ?, ?)
+        '''
+        data = (sinav.ad, sinav.tarih, sinav.ders_id)
+        if db.cur.execute(sql, data):
+            db.conn.commit()
+            return True
+
+    def sinavOlustur(self, ad, tarih, ders_id):
+        sinav = Sinav(ad, tarih, ders_id)
+        return sinav
