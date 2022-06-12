@@ -125,13 +125,13 @@ def ogretmenSinavEkle():
             tarih = request.form.get('sinavtarihi')
             ders_id = request.form.get('dersid')
             if ad.replace(" ", "") == "" or not tarih:
-                flash("Boş alan bırakmayın.")
+                flash(flash("<div class='my-4 alert alert-warning'>Boş alan bırakmayın.</div>"))
             else:
                 sinav = sinavM.sinavOlustur(ad, tarih, ders_id)
                 if sinavM.sinavEkle(sinav):
-                    flash("Başarıyla eklendi.")
+                    flash("<div class='my-4 alert alert-success'>Başarıyla eklendi.</div>")
                 else:
-                    flash("Bir sorunla karşılaşıldı.")
+                    flash("<div class='my-4 alert alert-danger'>Bir sorunla karşılaşıldı.</div>")
         return render_template('ogretmen/sinavekle.html', ogretmen=ogretmen, dersler=dersler)
     else:
         return redirect(url_for('home'))

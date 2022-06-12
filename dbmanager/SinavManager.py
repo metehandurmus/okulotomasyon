@@ -21,14 +21,17 @@ class SinavManager:
         return data
     
     def sinavEkle(self, sinav):
-        db = DB()
-        sql = '''
-            INSERT INTO sinav (ad, tarih, ders_id) VALUES (?, ?, ?)
-        '''
-        data = (sinav.ad, sinav.tarih, sinav.ders_id)
-        if db.cur.execute(sql, data):
+        try:
+            db = DB()
+            sql = '''
+                INSERT INTO sinav (ad, tarih, ders_id) VALUES (?, ?, ?)
+            '''
+            data = (sinav.ad, sinav.tarih, sinav.ders_id)
+            db.cur.execute(sql, data)
             db.conn.commit()
             return True
+        except:
+            return False
 
     def sinavOlustur(self, ad, tarih, ders_id):
         sinav = Sinav(ad, tarih, ders_id)
